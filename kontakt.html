@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <style id="font-reset">
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    html, body, div, span, p, h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, label, li, td, th, nav, footer, section, header, main, form {
+      font-family: 'Space Grotesk', sans-serif !important;
+    }
+  </style>
+    <meta charset="UTF-8">
+  <meta name="description" content="Kontakt — napiš mi o svém projektu. První konzultace zdarma. Hledám také kameramany po celé ČR.">
+  <meta name="author" content="Valentýna Gášková">
+  <meta property="og:title" content="Kontakt — Valentýna Gášková">
+  <meta property="og:description" content="Kontakt — napiš mi o svém projektu. První konzultace zdarma. Hledám také kameramany po celé ČR.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt — Valentýna Gášková</title>
+  <style>
+    *, *::before, *::after {   }
+
+    * {  }
+    :root { --ink: #0d0c0b; --paper: #f6f3ee; --warm: #e8e2d8; --copper: #9e6b3f; --copper-light: #c8976a; --dust: #a09888; --line: rgba(13,12,11,0.1); }
+    * { box-sizing: border-box; margin: 0; padding: 0;  }
+    body {  background: var(--paper); color: var(--ink); font-weight: 400; cursor: none; }
+    .cursor { width: 8px; height: 8px; background: var(--copper); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
+    .cursor.grow { width: 40px; height: 40px; background: transparent; border: 1px solid var(--copper); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 3.5rem; background: var(--paper); border-bottom: 1px solid var(--line); }
+    .nav-logo {  font-size: 1rem; color: var(--ink); text-decoration: none; }
+    .nav-tagline { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper); margin-top: 2px; }
+    .nav-right { display: flex; gap: 2rem; }
+    .nav-right a { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dust); text-decoration: none; transition: color 0.2s; }
+    .nav-right a:hover, .nav-right a.active { color: var(--copper); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 72px); padding-top: 72px; }
+    .contact-left { padding: 7rem 4rem; background: var(--warm); border-right: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; }
+    .section-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper); margin-bottom: 3rem; }
+    .contact-left h1 {  font-size: clamp(3rem, 5vw, 5rem); font-weight: 700; line-height: 1; letter-spacing: -0.03em; margin-bottom: 2rem; }
+    .contact-left h1 em { font-style: normal; color: var(--copper); }
+    .contact-left p { font-size: 0.92rem; color: var(--dust); line-height: 1.9; margin-bottom: 2.5rem; max-width: 380px; }
+    .contact-email {  font-size: 1.4rem; font-style: normal; color: var(--copper); text-decoration: none; display: block; transition: color 0.2s; margin-bottom: 3rem; }
+    .contact-email:hover { color: var(--ink); }
+    .contact-right { padding: 7rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+    .form-field { border-bottom: 1px solid var(--line); transition: border-color 0.2s; }
+    .form-field:focus-within { border-color: var(--copper); }
+    .form-field input, .form-field textarea, .form-field select {
+      width: 100%; padding: 1.2rem 0; border: none; background: transparent;
+       font-size: 0.88rem; font-weight: 400;
+      outline: none; color: var(--ink); resize: none;
+    }
+    .form-field textarea { height: 120px; }
+    .form-field select { cursor: pointer; }
+    .form-submit { margin-top: 2.5rem; }
+    .btn-ink { background: var(--ink); color: var(--paper); padding: 1rem 2.5rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; border: none; text-decoration: none; display: inline-block; transition: background 0.3s;  cursor: pointer; }
+    .btn-ink:hover { background: var(--copper); }
+    .form-success { display: none; font-size: 0.85rem; color: var(--copper);  margin-top: 1rem; }
+    .camera-band { background: var(--ink); color: var(--paper); padding: 5rem 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; border-top: 1px solid rgba(246,243,238,0.05); }
+    .camera-band h2 {  font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+    .camera-band h2 em { font-style: normal; color: var(--copper-light); }
+    .camera-band p { font-size: 0.9rem; color: rgba(246,243,238,0.5); line-height: 1.9; margin-bottom: 2.5rem; }
+    .camera-band p strong { color: var(--paper); font-weight: 400; }
+    .btn-outline-white { display: inline-block; padding: 0.85rem 2rem; border: 1px solid rgba(246,243,238,0.3); color: var(--paper); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.2s;  }
+    .btn-outline-white:hover { background: var(--copper); border-color: var(--copper); }
+    .camera-quote {  font-size: clamp(1.5rem, 2.5vw, 2.2rem); font-style: normal; line-height: 1.5; color: rgba(246,243,238,0.2); }
+    .camera-quote em { color: var(--copper-light); font-style: normal; }
+    footer { padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust); border-top: 1px solid var(--line); }
+    footer a { color: var(--dust); text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; } .nav-right { display: none; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .contact-left, .contact-right { padding: 3.5rem 1.5rem; }
+      .contact-left { border-right: none; border-bottom: 1px solid var(--line); }
+      .camera-band { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+  </head>
+<body style="font-family:'Space Grotesk',sans-serif !important;">
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Valentýna Gášková<div class="nav-tagline">Jistota v chaosu</div></a>
+  <div class="nav-right">
+    <a href="index.html">Úvod</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="sluzby.html">Služby</a>
+    <a href="o-mne.html">O mně</a>
+    <a href="kontakt.html" class="active">Kontakt</a>
+  </div>
+</nav>
+
+<div class="contact-wrap">
+  <div class="contact-left">
+    <div class="section-label">Kontakt</div>
+    <h1>Pojďme na to<br><em>společně</em></h1>
+    <p>Napiš mi o svém projektu. Nejdřív se seznámím s tebou a tvou značkou, pak teprve navrhneme, co dává smysl. První konzultace je zdarma.</p>
+    <a href="mailto:v.gaskova@outlook.com" class="contact-email">v.gaskova@outlook.com</a>
+  </div>
+  <div class="contact-right">
+    <form class="contact-form" onsubmit="submitForm(event)">
+      <div class="form-field">
+        <input type="text" placeholder="Tvoje jméno" required>
+      </div>
+      <div class="form-field">
+        <input type="email" placeholder="E-mail" required>
+      </div>
+      <div class="form-field">
+        <select>
+          <option value="" disabled selected>Typ spolupráce</option>
+          <option>Střih videí</option>
+          <option>Video produkce</option>
+          <option>Copywriting</option>
+          <option>Balíček video + copywriting</option>
+          <option>Spolupráce, kameraman/ka</option>
+          <option>Něco jiného</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <textarea placeholder="Řekni mi o svém projektu nebo značce..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-ink">Odeslat →</button>
+        <div class="form-success" id="form-success">Zpráva odeslána. Ozvu se brzy.</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="camera-band" id="kameramani">
+  <div>
+    <h2>Hledám<br><em>kameramana</em></h2>
+    <p>Protože i můj den má 24 hodin, hledám kameramany po celé ČR, kteří by <strong>příležitostně natočili, co je potřeba.</strong> Zajímá tě spolupráce na volné noze, vlastní rozvrh a férové podmínky?</p>
+    <a href="mailto:v.gaskova@outlook.com?subject=Zájem o spolupráci – kameraman/ka" class="btn-outline-white">Napiš mi →</a>
+  </div>
+  <div>
+    <p class="camera-quote">"Protože i můj den má 24 hodin.<br><br><em>Hledám lidi, kteří to chápou."</em></p>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Valentýna Gášková</span>
+  <span>Jistota v chaosu</span>
+  <a href="podminky.html">Obchodní podmínky & GDPR</a>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+  document.querySelectorAll('a, button, input, textarea, select').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+  });
+
+  function submitForm(e) {
+    e.preventDefault();
+    const s = document.getElementById('form-success');
+    s.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { s.style.display = 'none'; }, 5000);
+  }
+</script>
+</body>
+</html>

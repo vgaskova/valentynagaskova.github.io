@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <style id="font-reset">
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    html, body, div, span, p, h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, label, li, td, th, nav, footer, section, header, main, form {
+      font-family: 'Space Grotesk', sans-serif !important;
+    }
+  </style>
+    <meta charset="UTF-8">
+  <meta name="description" content="Služby a ceník — střih videí, video produkce, copywriting a správa profilu. Nakonfiguruj si projekt a zjisti orientační cenu.">
+  <meta name="author" content="Valentýna Gášková">
+  <meta property="og:title" content="Sluzby — Valentýna Gášková">
+  <meta property="og:description" content="Služby a ceník — střih videí, video produkce, copywriting a správa profilu. Nakonfiguruj si projekt a zjisti orientační cenu.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Služby & Ceník — Valentýna Gášková</title>
+  <style>
+    *, *::before, *::after {   }
+
+    * {  }
+    :root { --ink: #0d0c0b; --paper: #f6f3ee; --warm: #e8e2d8; --copper: #9e6b3f; --copper-light: #c8976a; --dust: #a09888; --line: rgba(13,12,11,0.1); }
+    * { box-sizing: border-box; margin: 0; padding: 0;  }
+    body {  background: var(--paper); color: var(--ink); font-weight: 400; cursor: none; }
+    .cursor { width: 8px; height: 8px; background: var(--copper); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
+    .cursor.grow { width: 40px; height: 40px; background: transparent; border: 1px solid var(--copper); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 3.5rem; background: var(--paper); border-bottom: 1px solid var(--line); }
+    .nav-logo {  font-size: 1rem; color: var(--ink); text-decoration: none; }
+    .nav-tagline { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper); margin-top: 2px; }
+    .nav-right { display: flex; gap: 2rem; }
+    .nav-right a { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dust); text-decoration: none; transition: color 0.2s; }
+    .nav-right a:hover, .nav-right a.active { color: var(--copper); }
+    .page-hero { padding: 10rem 3.5rem 5rem; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+    .page-hero h1 {  font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; }
+    .page-hero h1 em { font-style: normal; color: var(--copper); }
+    .page-hero-right p { font-size: 0.95rem; color: var(--dust); line-height: 1.8;  font-weight: 400; }
+    .services { border-bottom: 1px solid var(--line); }
+    .acc-list { border-top: 1px solid var(--line); }
+    .acc-item { border-bottom: 1px solid var(--line); cursor: pointer; transition: background 0.2s; }
+    .acc-item:hover { background: var(--warm); }
+    .acc-head { display: grid; grid-template-columns: 3rem 1fr 1fr auto; gap: 2rem; padding: 2rem 3.5rem; align-items: center; }
+    .acc-num { font-size: 0.65rem; color: var(--copper); letter-spacing: 0.1em;  font-style: normal; }
+    .acc-title {  font-size: clamp(1.1rem, 2vw, 1.6rem); font-weight: 700; }
+    .acc-short { font-size: 0.85rem; color: var(--dust);  font-weight: 400; }
+    .acc-arrow { font-size: 1rem; color: var(--copper); transition: transform 0.3s; text-align: center; }
+    .acc-item.open .acc-arrow { transform: rotate(45deg); }
+    .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; font-size: 0.88rem; color: var(--dust); line-height: 1.9; padding: 0 3.5rem 0 calc(3.5rem + 3rem + 2rem); }
+    .acc-item.open .acc-body { max-height: 150px; padding: 0 3.5rem 2rem calc(3.5rem + 3rem + 2rem); }
+    .config-section { padding: 0; background: var(--paper); border-top: 1px solid var(--line); }
+    .config-section-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .config-left { padding: 7rem 4rem; border-right: 1px solid var(--line); }
+    .config-right { padding: 7rem 4rem; background: var(--warm); }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper); margin-bottom: 2rem; font-weight: 500; }
+    .config-title {  font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+    .config-title em { font-style: normal; color: var(--copper); }
+    .config-sub { font-size: 0.9rem; color: var(--dust); font-style: normal;  line-height: 1.7; max-width: 320px; }
+    .config-step { margin-bottom: 2.5rem; }
+    .config-step-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dust); margin-bottom: 0.5rem; }
+    .config-step-title { font-size: 1rem; color: var(--ink); margin-bottom: 1rem; font-weight: 700; }
+    .opts { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .opt { border: 1px solid var(--line); padding: 0.75rem 1.4rem; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; background: var(--paper); color: var(--ink);  }
+    .opt:hover { border-color: var(--copper); color: var(--copper); }
+    .opt.selected { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .config-result { margin-top: 3rem; padding: 0; border-top: 2px solid var(--ink); max-width: 100%; }
+    .result-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--line); font-size: 0.82rem; color: var(--dust); }
+    .result-row span:last-child { color: var(--ink); font-weight: 400; }
+    .result-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 2rem; }
+    .result-total-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); }
+    .result-total-price {  font-size: clamp(3rem, 5vw, 5rem); font-weight: 400; color: var(--ink); letter-spacing: -0.03em; line-height: 1; }
+    .result-note { font-size: 0.7rem; color: var(--dust); margin-top: 0.3rem; font-style: normal; }
+    .result-empty { font-size: 0.85rem; color: var(--dust); font-style: normal;  padding: 2rem 0; }
+    .config-note { margin-top: 2rem; font-size: 0.8rem; color: var(--dust); font-style: normal;  line-height: 1.7; }
+    .btn-ink { background: var(--ink); color: var(--paper); padding: 0.9rem 2.2rem; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; display: inline-block; border: none; cursor: pointer;  transition: background 0.3s; margin-top: 2rem; }
+    .btn-ink:hover { background: var(--copper); }
+    footer { padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust); border-top: 1px solid var(--line); }
+    footer a { color: var(--dust); text-decoration: none; }
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; } .nav-right { display: none; }
+      .page-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2rem; }
+      .acc-head { grid-template-columns: 2rem 1fr auto; padding: 1.5rem; gap: 1rem; }
+      .acc-short { display: none; }
+      .acc-body { padding-left: 1.5rem !important; }
+      .config-section-inner { grid-template-columns: 1fr; }
+      .config-left, .config-right { padding: 3.5rem 1.5rem; }
+      .config-left { border-right: none; border-bottom: 1px solid var(--line); }
+      footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+  </head>
+<body style="font-family:'Space Grotesk',sans-serif !important;">
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Valentýna Gášková<div class="nav-tagline">Jistota v chaosu</div></a>
+  <div class="nav-right">
+    <a href="index.html">Úvod</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="sluzby.html" class="active">Služby</a>
+    <a href="o-mne.html">O mně</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Co<br><em>dělám</em></h1>
+  <div class="page-hero-right">
+    <p>Než zapnu kameru nebo timeline, chci vědět, kdo jsi. Každý projekt začíná pochopením — pak teprve vznikne video, které prodává.</p>
+  </div>
+</div>
+
+<div class="services">
+  <div class="acc-list">
+    <div class="acc-item" onclick="toggleAcc(this)">
+      <div class="acc-head">
+        <span class="acc-num">01</span>
+        <span class="acc-title">Střih videí</span>
+        <span class="acc-short">Dodáš materiál, já dodám výsledek.</span>
+        <span class="acc-arrow">+</span>
+      </div>
+      <div class="acc-body">Reels, firemní videa, série pro sociální sítě. Krátká i delší videa, srozumitelná, lidská a podporující rozhodování. Stačí dodat záběry — o zbytek se postarám.</div>
+    </div>
+    <div class="acc-item" onclick="toggleAcc(this)">
+      <div class="acc-head">
+        <span class="acc-num">02</span>
+        <span class="acc-title">Video produkce</span>
+        <span class="acc-short">Jedu k tobě, natočím a sestříhám.</span>
+        <span class="acc-arrow">+</span>
+      </div>
+      <div class="acc-body">Kompletní péče od prvního záběru po finální export. Přijedu, natočím vlastním vybavením a vše sestříhám. Vizuály, které vypráví a neslouží jen jako výplň feedu.</div>
+    </div>
+    <div class="acc-item" onclick="toggleAcc(this)">
+      <div class="acc-head">
+        <span class="acc-num">03</span>
+        <span class="acc-title">Copywriting</span>
+        <span class="acc-short">Texty na web, newslettery, sociální sítě.</span>
+        <span class="acc-arrow">+</span>
+      </div>
+      <div class="acc-body">Titulky, popisky, texty na web a newslettery. S duší i obchodním smyslem — každé slovo má svůj důvod existovat. Texty, které prodávají, aniž by to bylo cítit.</div>
+    </div>
+    <div class="acc-item" onclick="toggleAcc(this)">
+      <div class="acc-head">
+        <span class="acc-num">04</span>
+        <span class="acc-title">Balíček video + copy</span>
+        <span class="acc-short">Střih i text v jednom.</span>
+        <span class="acc-arrow">+</span>
+      </div>
+      <div class="acc-body">Méně koordinace, lepší výsledek. Postaráš se o materiál, já o vše ostatní, od střihu po popisek. Výsledek je konzistentní, protože vše vzniká z jedné hlavy.</div>
+    </div>
+    <div class="acc-item" onclick="toggleAcc(this)">
+      <div class="acc-head">
+        <span class="acc-num">05</span>
+        <span class="acc-title">Správa profilu</span>
+        <span class="acc-short">Konzistentní profil bez starostí.</span>
+        <span class="acc-arrow">+</span>
+      </div>
+      <div class="acc-body">Postarám se o vizuální konzistenci tvého profilu na sociálních sítích. Plánování obsahu, úpravy, titulky a popisky — vše v souladu s identitou tvé značky.</div>
+    </div>
+  </div>
+</div>
+
+<div class="config-section" id="cenik">
+  <div class="config-section-inner">
+  <div class="config-left">
+    <div class="section-label">Ceník</div>
+    <h2 class="config-title">Nakonfiguruj<br>si <em>projekt</em></h2>
+    <p class="config-sub">Vyber parametry a uvidíš orientační cenu. Finální cena vždy po konzultaci.</p>
+    <p class="config-note" style="margin-top: 3rem;">Ceny jsou orientační pro standardní projekty. Náročnější nebo větší zakázky řeším individuálně — <a href="kontakt.html" style="color: var(--copper); text-decoration: none;">napiš mi</a>.</p>
+  </div>
+  <div class="config-right">
+  <div>
+    <div class="config-step">
+      <div class="config-step-label">Krok 1 — Materiál</div>
+      <div class="config-step-title">Kdo natočí?</div>
+      <div class="opts">
+        <div class="opt" data-group="material" data-key="client" data-material="client">Natočím si sám/a</div>
+        <div class="opt" data-group="material" data-key="own" data-material="own">Přijedeš natočit ty</div>
+      </div>
+    </div>
+    <div class="config-step">
+      <div class="config-step-label">Krok 2 — Délka</div>
+      <div class="config-step-title">Jak dlouhé video?</div>
+      <div class="opts">
+        <div class="opt" data-group="length" data-key="60" data-label="do 60 sec" data-price-client="550" data-price-own="900">do 60 sec</div>
+        <div class="opt" data-group="length" data-key="90" data-label="60–90 sec" data-price-client="750" data-price-own="1200">60–90 sec</div>
+        <div class="opt" data-group="length" data-key="long" data-label="90 sec+" data-price-client="950" data-price-own="1500">90 sec+</div>
+      </div>
+    </div>
+    <div class="config-step">
+      <div class="config-step-label">Krok 3 — Typ projektu</div>
+      <div class="config-step-title">Jednotlivé video nebo série?</div>
+      <div class="opts">
+        <div class="opt" data-group="type" data-key="single" data-label="Jednotlivé video" data-discount="0">Jednotlivé video</div>
+        <div class="opt" data-group="type" data-key="serie" data-label="Série (3+ videa)" data-discount="0.10">Série (3+ videa, sleva 10 %)</div>
+      </div>
+    </div>
+
+    <div class="config-result" id="config-result" style="display:none;">
+      <div id="result-rows"><div class="result-empty">Dokonči výběr výše.</div></div>
+      <div class="result-total">
+        <div>
+          <div class="result-total-label">Odhadovaná cena</div>
+          <div class="result-note">Finální cena po konzultaci. První konzultace zdarma.</div>
+        </div>
+        <div class="result-total-price" id="total-price">— Kč</div>
+      </div>
+      <a href="kontakt.html" class="btn-ink">Chci tuto nabídku →</a>
+    </div>
+
+  </div>
+  </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Valentýna Gášková</span>
+  <span>Jistota v chaosu</span>
+  <a href="podminky.html">Obchodní podmínky & GDPR</a>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+  document.querySelectorAll('a, button, .opt, .acc-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+  });
+
+  function toggleAcc(el) {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) el.classList.add('open');
+  }
+
+  const state = { material: null, length: null, type: null };
+
+  document.querySelectorAll('.opt').forEach(el => {
+    el.addEventListener('click', () => {
+      const g = el.dataset.group;
+      document.querySelectorAll(`.opt[data-group="${g}"]`).forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      state[g] = el;
+      calculate();
+    });
+  });
+
+  function calculate() {
+    if (!state.material || !state.length || !state.type) return;
+    document.getElementById('config-result').style.display = 'block';
+    const isOwn = state.material.dataset.material === 'own';
+    const base = isOwn ? parseInt(state.length.dataset.priceOwn) : parseInt(state.length.dataset.priceClient);
+    const discount = parseFloat(state.type.dataset.discount) || 0;
+    let rows = '';
+    rows += `<div class="result-row"><span>${state.material.textContent.trim()}</span><span>v ceně</span></div>`;
+    rows += `<div class="result-row"><span>${state.length.dataset.label}</span><span>${base.toLocaleString('cs-CZ')} Kč</span></div>`;
+    if (discount > 0) rows += `<div class="result-row"><span>Sleva série 10 %</span><span>-${Math.round(base * discount).toLocaleString('cs-CZ')} Kč</span></div>`;
+    const total = Math.round(base * (1 - discount));
+    document.getElementById('result-rows').innerHTML = rows;
+    document.getElementById('total-price').textContent = total.toLocaleString('cs-CZ') + ' Kč';
+  }
+</script>
+</body>
+</html>

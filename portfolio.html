@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <style id="font-reset">
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    html, body, div, span, p, h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, label, li, td, th, nav, footer, section, header, main, form {
+      font-family: 'Space Grotesk', sans-serif !important;
+    }
+  </style>
+    <meta charset="UTF-8">
+  <meta name="description" content="Ukázky práce Valentýny Gáškové — firemní videa, reels, focení a střih pro značky jako Mobilboard, Lothardy nebo Infrashape.">
+  <meta name="author" content="Valentýna Gášková">
+  <meta property="og:title" content="Portfolio — Valentýna Gášková">
+  <meta property="og:description" content="Ukázky práce Valentýny Gáškové — firemní videa, reels, focení a střih pro značky jako Mobilboard, Lothardy nebo Infrashape.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Valentýna Gášková</title>
+  <style>
+    *, *::before, *::after {   }
+
+    * {  }
+    :root { --ink: #0d0c0b; --paper: #f6f3ee; --warm: #e8e2d8; --copper: #9e6b3f; --copper-light: #c8976a; --dust: #a09888; --line: rgba(13,12,11,0.1); }
+    * { box-sizing: border-box; margin: 0; padding: 0;  }
+    body {  background: var(--paper); color: var(--ink); font-weight: 400; cursor: none; }
+    .cursor { width: 8px; height: 8px; background: var(--copper); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
+    .cursor.grow { width: 40px; height: 40px; background: transparent; border: 1px solid var(--copper); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 3.5rem; background: var(--paper); border-bottom: 1px solid var(--line); }
+    .nav-logo {  font-size: 1rem; color: var(--ink); text-decoration: none; }
+    .nav-tagline { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper); margin-top: 2px; }
+    .nav-right { display: flex; gap: 2rem; }
+    .nav-right a { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dust); text-decoration: none; transition: color 0.2s; }
+    .nav-right a:hover, .nav-right a.active { color: var(--copper); }
+    .page-hero { padding: 10rem 3.5rem 5rem; border-bottom: 1px solid var(--line); }
+    .page-hero h1 {  font-size: clamp(4rem, 8vw, 8rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; }
+    .page-hero h1 em { font-style: normal; color: var(--copper); }
+    .page-hero p { font-size: 1rem; color: var(--dust); margin-top: 2rem; max-width: 480px; line-height: 1.8;  }
+    .port-lock { padding: 4rem 3.5rem; border-bottom: 1px solid var(--line); background: var(--warm); display: flex; justify-content: space-between; align-items: flex-end; gap: 4rem; flex-wrap: wrap; }
+    .port-lock-text p { font-size: 0.88rem; color: var(--dust); line-height: 1.8; margin-bottom: 1.5rem; max-width: 420px; }
+    .port-form { display: flex; gap: 0; }
+    .port-input { flex: 1; padding: 0.9rem 1.2rem; border: 1px solid rgba(13,12,11,0.2); border-right: none; background: var(--paper);  font-size: 0.85rem; outline: none; color: var(--ink); min-width: 220px; }
+    .port-input:focus { border-color: var(--ink); }
+    .port-btn { padding: 0.9rem 1.8rem; background: var(--ink); color: var(--paper); border: none; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;  transition: background 0.2s; }
+    .port-btn:hover { background: var(--copper); }
+    .port-error { font-size: 0.75rem; color: var(--copper); margin-top: 0.5rem; display: none; }
+    .port-grid-locked { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin: 0; }
+    .port-cell { background: var(--warm); padding: 3.5rem 3rem; position: relative; overflow: hidden; min-height: 240px; display: flex; flex-direction: column; justify-content: flex-end; transition: background 0.3s; }
+    .port-cell:hover { background: var(--paper); }
+    .port-cell-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .port-cell-num {  font-size: 7rem; font-weight: 700; color: rgba(13,12,11,0.04); line-height: 1; user-select: none; }
+    .port-cell-label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper); margin-bottom: 0.5rem; position: relative; z-index: 1; }
+    .port-cell h3 {  font-size: 1.5rem; font-weight: 400; position: relative; z-index: 1; }
+    .port-cell p { font-size: 0.82rem; color: var(--dust); margin-top: 0.4rem; line-height: 1.6; position: relative; z-index: 1; }
+    .port-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: rgba(246,243,238,0.7); }
+    .port-overlay-icon { font-size: 1.4rem; }
+    .port-overlay-text { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dust); }
+    .port-unlocked { display: none; }
+    .port-unlocked.show { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+    .port-success { display: none; padding: 2rem 3.5rem; background: var(--ink); color: var(--paper); font-size: 0.85rem;  }
+    .port-success.show { display: block; }
+    footer { padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust); border-top: 1px solid var(--line); }
+    footer a { color: var(--dust); text-decoration: none; }
+    @media (max-width: 900px) { nav { padding: 1.2rem 1.5rem; } .nav-right { display: none; } .page-hero, .port-lock { padding-left: 1.5rem; padding-right: 1.5rem; } .port-grid-locked, .port-unlocked.show { grid-template-columns: 1fr; } footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; } }
+  </style>
+  </head>
+<body style="font-family:'Space Grotesk',sans-serif !important;">
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Valentýna Gášková<div class="nav-tagline">Jistota v chaosu</div></a>
+  <div class="nav-right">
+    <a href="index.html">Úvod</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="sluzby.html">Služby</a>
+    <a href="o-mne.html">O mně</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Ukázky<br><em>práce</em></h1>
+  <p>Projekty, ve kterých obsah neslouží jen k pozornosti, ale k rozhodnutí.</p>
+</div>
+
+<div class="port-lock" id="port-lock-section">
+  <div class="port-lock-text">
+    <p>Portfolio je chráněno heslem z důvodu ochrany soukromí klientů. Napiš mi a heslo pošlu obratem.</p>
+    <div class="port-form">
+      <input type="password" class="port-input" id="port-pw" placeholder="Zadej heslo...">
+      <button class="port-btn" onclick="unlockPort()">Odemknout →</button>
+    </div>
+    <div class="port-error" id="port-error">Nesprávné heslo. Napiš mi pro přístup.</div>
+  </div>
+  <a href="kontakt.html" style="font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dust);text-decoration:none;">Napsat mi →</a>
+</div>
+
+<div class="port-success" id="port-success">Portfolio odemčeno. Vítej!</div>
+
+<div class="port-grid-locked" id="port-locked">
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">01</div></div>
+    <div class="port-cell-label">Firemní projekty</div>
+    <h3>Mobilboard</h3>
+    <p>Propagační videa, kampaně, dlouhodobá spolupráce.</p>
+    <div class="port-overlay"><div class="port-overlay-icon">🔒</div><div class="port-overlay-text">Chráněno heslem</div></div>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">02</div></div>
+    <div class="port-cell-label">Fashion</div>
+    <h3>Lothardy</h3>
+    <p>Autorské focení a střih pro sportovní módní značku.</p>
+    <div class="port-overlay"><div class="port-overlay-icon">🔒</div><div class="port-overlay-text">Chráněno heslem</div></div>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">03</div></div>
+    <div class="port-cell-label">Beauty</div>
+    <h3>Kosmetický salon Heda</h3>
+    <p>Autorské focení, video a střih pro beauty salon.</p>
+    <div class="port-overlay"><div class="port-overlay-icon">🔒</div><div class="port-overlay-text">Chráněno heslem</div></div>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">04</div></div>
+    <div class="port-cell-label">Wellness</div>
+    <h3>Infrashape Zlín</h3>
+    <p>Natáčení, focení a střih pro wellness studio.</p>
+    <div class="port-overlay"><div class="port-overlay-icon">🔒</div><div class="port-overlay-text">Chráněno heslem</div></div>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">05</div></div>
+    <div class="port-cell-label">Baby & rodinné produkty</div>
+    <h3>Bobiny</h3>
+    <p>Střih videí pro e-shop s dětskými produkty.</p>
+    <div class="port-overlay"><div class="port-overlay-icon">🔒</div><div class="port-overlay-text">Chráněno heslem</div></div>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">06</div></div>
+    <div class="port-cell-label">Tech & neziskový sektor</div>
+    <h3>DobroData</h3>
+    <p>Střih videí pro konferenci o datech pro lepší svět.</p>
+    <div class="port-overlay"><div class="port-overlay-icon">🔒</div><div class="port-overlay-text">Chráněno heslem</div></div>
+  </div>
+</div>
+
+<div class="port-unlocked" id="port-unlocked">
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">01</div></div>
+    <div class="port-cell-label">Firemní projekty</div>
+    <h3>Mobilboard</h3>
+    <p>Propagační videa, kampaně, dlouhodobá spolupráce.</p>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">02</div></div>
+    <div class="port-cell-label">Fashion</div>
+    <h3>Lothardy</h3>
+    <p>Autorské focení a střih pro sportovní módní značku.</p>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">03</div></div>
+    <div class="port-cell-label">Beauty</div>
+    <h3>Kosmetický salon Heda</h3>
+    <p>Autorské focení, video a střih pro beauty salon.</p>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">04</div></div>
+    <div class="port-cell-label">Wellness</div>
+    <h3>Infrashape Zlín</h3>
+    <p>Natáčení, focení a střih pro wellness studio.</p>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">05</div></div>
+    <div class="port-cell-label">Baby & rodinné produkty</div>
+    <h3>Bobiny</h3>
+    <p>Střih videí pro e-shop s dětskými produkty.</p>
+  </div>
+  <div class="port-cell">
+    <div class="port-cell-bg"><div class="port-cell-num">06</div></div>
+    <div class="port-cell-label">Tech & neziskový sektor</div>
+    <h3>DobroData</h3>
+    <p>Střih videí pro konferenci o datech pro lepší svět.</p>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Valentýna Gášková</span>
+  <span>Jistota v chaosu</span>
+  <a href="podminky.html">Obchodní podmínky & GDPR</a>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+  document.querySelectorAll('a, button, .port-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+  });
+
+  function unlockPort() {
+    const pw = document.getElementById('port-pw').value;
+    const err = document.getElementById('port-error');
+    if (pw === 'valentyna2025') {
+      document.getElementById('port-lock-section').style.display = 'none';
+      document.getElementById('port-locked').style.display = 'none';
+      document.getElementById('port-success').classList.add('show');
+      document.getElementById('port-unlocked').classList.add('show');
+    } else {
+      err.style.display = 'block';
+    }
+  }
+  document.getElementById('port-pw').addEventListener('keydown', e => { if (e.key === 'Enter') unlockPort(); });
+</script>
+</body>
+</html>
